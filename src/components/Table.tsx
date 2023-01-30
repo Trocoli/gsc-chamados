@@ -59,9 +59,9 @@ const Table = (props: TableProps) => {
   };
 
   return (
-    <div>
+    <div className="w-full mx-5">
       <table className="w-full rounded-xl overflow-hidden">
-        <thead className="text-gray-100 bg-gradient-to-r from from-red-500 to-red-700 ">
+        <thead className="text-gray-100 bg-gradient-to-r from from-red-500 to-red-600 ">
           {renderHead()}
         </thead>
         <tbody>{renderData()}</tbody>
