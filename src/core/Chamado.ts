@@ -4,16 +4,23 @@ export default class Chamado {
     #nome: string
     #setor: string
     #descricao: string
+    #timestamp: Date
+    #completed_at: Date | null
+    #isFinished: boolean
 
-    constructor(nome: string, setor: string, descricao: string, id: string  ) {
+    constructor(nome: string, setor: string, descricao: string, id: string,  timestamp: Date, completed_at: Date | null, isFinished: boolean ) {
         this.#nome = nome
         this.#setor = setor
         this.#descricao = descricao 
         this.#id = id
+        this.#timestamp = timestamp
+        this.#completed_at = completed_at
+        this.#isFinished = isFinished
     }
 
     static empty() {
-        return new Chamado('', '', '', '0' )
+        const date = new Date()
+        return new Chamado('', '', '', '0', date, null, false)
     }
 
     get id() {
@@ -30,5 +37,17 @@ export default class Chamado {
 
     get descricao() {
         return this.#descricao
+    }
+
+    get timestamp() {
+        return this.#timestamp
+    }
+
+    get completed_at() {
+        return this.#completed_at
+    }
+
+    get isFinished() {
+        return this.#isFinished
     }
 }

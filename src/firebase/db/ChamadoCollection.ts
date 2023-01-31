@@ -9,6 +9,9 @@ export default class ChamadoCollection implements ChamadoRepo {
         nome: chamado.nome,
         setor: chamado.setor,
         descricao: chamado.descricao,
+        timestamp: chamado.timestamp,
+        completed_at: null,
+        isFinished: false 
       };
     },
     fromFirestore(
@@ -16,7 +19,7 @@ export default class ChamadoCollection implements ChamadoRepo {
       options: firebase.firestore.SnapshotOptions
     ): Chamado {
       const data = snapshot?.data(options);
-      return new Chamado(data.nome, data.setor, data.descricao, snapshot.id);
+      return new Chamado(data.nome, data.setor, data.descricao, snapshot.id,  data.timestamp.toDate() , null, false);
     },
   };
 

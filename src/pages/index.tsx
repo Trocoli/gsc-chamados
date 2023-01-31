@@ -5,7 +5,7 @@ import useChamado from "@/hooks/useChamados";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { salvarChamado, chamado, chamadoList, hasChamado, setHasChamado } =
+  const { salvarChamado, chamado, chamadoList, hasChamado, setHasChamado, } =
     useChamado();
 
   useEffect(() => {

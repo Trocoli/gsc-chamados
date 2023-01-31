@@ -20,7 +20,7 @@ const Table = (props: TableProps) => {
           <td className="text-left p-4">{chamado.nome}</td>
           <td className="text-left p-4">{chamado.setor}</td>
           <td className="text-left p-4">{chamado.descricao}</td>
-          <td className="text-left p-4">hora</td>
+          <td className="text-left p-4">{`${chamado.timestamp.getHours()}:${+chamado.timestamp.getMinutes()<10 ? '0' : ''}${chamado.timestamp.getMinutes()}`}</td>
           {renderActions(chamado)}
         </tr>
       );
