@@ -12,8 +12,7 @@ const Form = (props: FormProps) => {
   const [nome, setNome] = useState("");
   const [setor, setSetor] = useState("");
   const [descricao, setDescricao] = useState("");
-
-  const id = Math.random().toString
+  const [tempId, setTempId] = useState(Math.floor(Math.random() * 100).toString())
 
   const [showForm, setShowForm] = useState(false);
 
@@ -50,7 +49,7 @@ const Form = (props: FormProps) => {
             />
           </div>
           <div className=" flex justify-center pt-2 m-2 ">
-            <Button className={`bg-red-500 mt-5 w-full mr-3  hover:bg-red-400 hover:font-bold  ease-in-out duration-200`} onClick={() => props.onSubmit?.(new Chamado(nome, setor, descricao))}>Confirmar</Button>
+            <Button className={`bg-red-500 mt-5 w-full mr-3  hover:bg-red-400 hover:font-bold  ease-in-out duration-200`} onClick={() => props.onSubmit?.(new Chamado(nome, setor, descricao, tempId))}>Confirmar</Button>
             <Button onClick={onHideForm} className={`bg-gray-500 mt-5 hover:bg-gray-400 hover:font-bold `}>Cancelar</Button>
           </div>
         </div>

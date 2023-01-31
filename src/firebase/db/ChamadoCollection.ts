@@ -23,7 +23,8 @@ export default class ChamadoCollection implements ChamadoRepo {
   async save(chamado: Chamado): Promise<Chamado> {
     const docRef = await this.collection().add(chamado)
     const doc = await docRef.get()
-    return doc.data();
+    console.log(doc.data)
+    return doc.data()!;
   }
   async delete(chamado: Chamado): Promise<void> {
     return this.collection().doc(chamado.id).delete();
@@ -32,6 +33,7 @@ export default class ChamadoCollection implements ChamadoRepo {
     const query = await this.collection().get()
     return query.docs.map((doc: { data: () => any; })=> doc.data()) ?? []
   }
+  
 
   private collection() {
     return firebase

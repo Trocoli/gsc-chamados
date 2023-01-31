@@ -1,11 +1,11 @@
 
 export default class Chamado {
-    #id: string| null
+    #id: string
     #nome: string
     #setor: string
     #descricao: string
 
-    constructor(nome: string, setor: string, descricao: string, id: string | null = null ) {
+    constructor(nome: string, setor: string, descricao: string, id: string  ) {
         this.#nome = nome
         this.#setor = setor
         this.#descricao = descricao 

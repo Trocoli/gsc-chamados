@@ -1,32 +1,10 @@
 import Sidebar from "@/components/Sidebar";
 import Table from "@/components/Table";
-import Chamado from "@/core/Chamado";
-import ChamadoCollection from "@/firebase/db/ChamadoCollection";
-import { useEffect, useState } from "react";
+import useChamado from "@/hooks/useChamados";
 
 const Admin = () => {
 
-  const [chamados, setChamados] = useState<Chamado[]>([])
-  
-  const repo: ChamadoCollection = new ChamadoCollection()
-
-  useEffect(()=> {
-    getAll()
-  },[])
-
-  const getAll = () => {
-    repo.getAll().then(chamados => {
-      setChamados(chamados)
-    })
-  }
-
-  const chamadoSelecionado = (chamado: Chamado) => {
-    console.log(chamado.nome);
-  };
-  const chamadoExcluido = async (chamado: Chamado) => {
-    await repo.delete(chamado)
-    getAll()
-  };
+  const {chamadoSelecionado, chamadoExcluido, chamadoList} = useChamado()
 
   return (
     <>
@@ -41,7 +19,7 @@ const Admin = () => {
           <div className="flex flex-col w-full items-center px-5">
             {" "}
             <Table
-              chamados={chamados}
+              chamados={chamadoList}
               chamadoSelecionado={chamadoSelecionado}
               chamadoExcluido={chamadoExcluido}
             ></Table>
