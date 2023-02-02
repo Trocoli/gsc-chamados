@@ -11,19 +11,23 @@ interface TableProps {
 const Table = (props: TableProps) => {
   const renderData = () => {
     return props.chamados?.map((chamado, i) => {
-      return (
-        <tr
-          key={chamado.id}
-          className={`${i % 2 === 0 ? "bg-red-200" : "bg-red-100"}`}
-        >
-          <td className="text-left p-4">{chamado.id}</td>
-          <td className="text-left p-4">{chamado.nome}</td>
-          <td className="text-left p-4">{chamado.setor}</td>
-          <td className="text-left p-4">{chamado.descricao}</td>
-          <td className="text-left p-4">{`${chamado.timestamp.getHours()}:${+chamado.timestamp.getMinutes()<10 ? '0' : ''}${chamado.timestamp.getMinutes()}`}</td>
-          {renderActions(chamado)}
-        </tr>
-      );
+      if (!chamado.isFinished) {
+        return (
+          <tr
+            key={chamado.id}
+            className={`${i % 2 === 0 ? "bg-red-200" : "bg-red-100"}`}
+          >
+            <td className="text-left p-4">{chamado.id}</td>
+            <td className="text-left p-4">{chamado.nome}</td>
+            <td className="text-left p-4">{chamado.setor}</td>
+            <td className="text-left p-4">{chamado.descricao}</td>
+            <td className="text-left p-4">{`${chamado.timestamp.getHours()}:${
+              +chamado.timestamp.getMinutes() < 10 ? "0" : ""
+            }${chamado.timestamp.getMinutes()}`}</td>
+            {renderActions(chamado)}
+          </tr>
+        );
+      }
     });
   };
 
@@ -37,8 +41,9 @@ const Table = (props: TableProps) => {
           {CheckIcon}
         </button>
         <button
-        onClick={() => props.chamadoExcluido?.(chamado)}
-          className={`flex justify-center item-center text-red-600 rounded-full hover:bg-red-50 p-2 m-1`}>
+          onClick={() => props.chamadoExcluido?.(chamado)}
+          className={`flex justify-center item-center text-red-600 rounded-full hover:bg-red-50 p-2 m-1`}
+        >
           {TrashIcon}
         </button>
       </td>
@@ -59,8 +64,8 @@ const Table = (props: TableProps) => {
   };
 
   return (
-    <div className="w-full mx-5">
-      <table className="w-full rounded-xl overflow-hidden">
+    <div className="w-full mx-5 max-h-[600px] overflow-y-scroll rounded-xl">
+      <table className="w-full rounded-xl  overflow-scroll">
         <thead className="text-gray-100 bg-gradient-to-r from from-red-500 to-red-600 ">
           {renderHead()}
         </thead>
