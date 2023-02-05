@@ -25,6 +25,8 @@ export default function useChamado() {
     // getChamadosAbertos()
   };
 
+  // react query bramch
+
   const getChamadosAbertos = () => {
     repo.getChamadosAbertos().then((chamados) => {
       setChamadosAbertos((chamadosAbertos) => chamados);
