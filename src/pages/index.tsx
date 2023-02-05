@@ -1,11 +1,12 @@
 import Form from "@/components/Form";
 import { CheckIcon } from "@/components/Icons";
 import Layout from "@/components/Layout";
+import Chamado from "@/core/Chamado";
 import useChamado from "@/hooks/useChamados";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { salvarChamado, chamado, chamadoList, hasChamado, setHasChamado, } =
+  const { salvarChamado, chamado, chamadoList, hasChamado, setHasChamado, getChamadosAbertos, chamadosAbertos } =
     useChamado();
 
   useEffect(() => {
@@ -26,13 +27,14 @@ export default function Home() {
     location.reload();
   };
 
+
   // exibir detalhase do chamado e salvar informações no local storage
   return (
     <div className="flex items-center justify-center h-screen bg-gray-900">
       <Layout title="Chamados GSC">
         {hasChamado && (
           <div>
-            <h1 className="font-bold flex items-center justify-center">
+            <h1 className="font-bold flex items-center justify-center">e
               Chamado realizado com sucesso por favor aguarde.
             </h1>
             {/* <ul className="flex items-center justify-center">
@@ -52,7 +54,7 @@ export default function Home() {
           </div>
         )}
         {!chamado && !hasChamado && (
-          <Form chamado={chamadoList[0]} onSubmit={salvarChamado} />
+          <Form chamado={chamadoList[0]} onSubmit={salvarChamado} onClickCapture={getChamadosAbertos} />
         )}
         {/* <Table
           chamados={chamados}

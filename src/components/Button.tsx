@@ -6,13 +6,14 @@ interface ButtonProps {
     className?: string
     children: any
     onClick? : () => void
+    onClickCapture?: () => void
 
 }
 
 const Button = (props: ButtonProps) => {
     const color = props.color ?? 'gray'
   return (
-    <button onClick={props.onClick} className={`bg-gradient-to-r from-${color}-400 to-${color}-700 text-white px-4 py-4 rounded-md font-bold ${props.className}`} >
+    <button onClick={props.onClick} onClickCapture={props.onClickCapture} className={`bg-gradient-to-r from-${color}-400 to-${color}-700 text-white px-4 py-4 rounded-md font-bold ${props.className}`} >
         {props.children}
     </button>
   )

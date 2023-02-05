@@ -2,15 +2,34 @@ import ConcluidosTable from "@/components/ConcluidosTable";
 import Sidebar from "@/components/Sidebar";
 import Table from "@/components/Table";
 import Chamado from "@/core/Chamado";
+import ChamadoRepo from "@/core/ChamadoRepo";
+import ChamadoCollection from "@/firebase/db/ChamadoCollection";
 import useChamado from "@/hooks/useChamados";
-import { useStore } from "@/hooks/useStore";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 const Admin = () => {
-  const { chamado, chamadoSelecionado, chamadoExcluido, chamadoList } =
-    useChamado();
+  const {
+    // chamadosAbertos,
+    chamadosConcluidos,
+    getChamadosConcluidos,
+    getChamadosAbertos,
+    chamadoSelecionado,
+    chamadoExcluido,
+    chamadoList,
+    chamadosAbertos
+  } = useChamado();
 
-    const ctx = useStore()
+
+  useEffect(() => {
+    getChamadosConcluidos();
+    console.log("111");
+  }, [chamadoList]);
+
+
+
+  useEffect(() => {
+    console.log('loop')
+  }, [chamadosAbertos])
 
   return (
     <>
@@ -23,7 +42,7 @@ const Admin = () => {
           <div className="flex flex-col w-full items-center  px-5 ">
             {" "}
             <Table
-              chamados={ctx.chamadosAbertos}
+              chamados={chamadosAbertos}
               chamadoSelecionado={chamadoSelecionado}
               chamadoExcluido={chamadoExcluido}
             ></Table>
@@ -32,7 +51,7 @@ const Admin = () => {
             </h1>
             {/* table de encerrados */}
             <ConcluidosTable
-              chamados={ctx.chamadosConcluidos}
+              chamados={chamadosConcluidos}
               chamadoSelecionado={chamadoSelecionado}
               chamadoExcluido={chamadoExcluido}
             ></ConcluidosTable>

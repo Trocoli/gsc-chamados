@@ -7,6 +7,7 @@ import Input from "./Input";
 interface FormProps {
   chamado: Chamado;
   onSubmit?: (chamado: Chamado) => void;
+  onClickCapture?: () => void
 }
 
 const Form = (props: FormProps) => {
@@ -75,6 +76,7 @@ const Form = (props: FormProps) => {
                   )
                 )
               }
+              onClickCapture={props.onClickCapture}
             >
               Confirmar
             </Button>

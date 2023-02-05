@@ -1,43 +1,41 @@
 import Chamado from "@/core/Chamado";
 import ChamadoRepo from "@/core/ChamadoRepo";
 import ChamadoCollection from "@/firebase/db/ChamadoCollection";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function useChamado() {
   const repo: ChamadoRepo = new ChamadoCollection();
 
   const [chamado, setChamado] = useState<Chamado>();
   const [chamadoList, setChamadoList] = useState<Chamado[]>([]);
-  const [chamadosAbertos, setChamadosAbertos]  = useState<Chamado[]>([])
-  const [chamadosConcluidos, setChamadosConcluidos]  = useState<Chamado[]>([])
+  const [chamadosAbertos, setChamadosAbertos] = useState<Chamado[]>([]);
+  const [chamadosConcluidos, setChamadosConcluidos] = useState<Chamado[]>([]);
   const [hasChamado, setHasChamado] = useState(false);
 
-  // useEffect(() => {
-  //   getAll();
-  //   getChamadosAbertos();
-  //   getChamadosConcluidos()
-  // }, []);
-
+  useEffect(() => {
+    getAll();
+    getChamadosConcluidos();
+    getChamadosAbertos();
+  }, []);
 
   const getAll = () => {
     repo.getAll().then((chamados) => {
       setChamadoList(chamados);
     });
+    // getChamadosAbertos()
   };
-
 
   const getChamadosAbertos = () => {
     repo.getChamadosAbertos().then((chamados) => {
-      setChamadosAbertos(chamados)
-    })
-  }
+      setChamadosAbertos((chamadosAbertos) => chamados);
+    });
+  };
 
-
-  const getChamadosConcluidos= () => {
+  const getChamadosConcluidos = () => {
     repo.getChamadosConcluidos().then((chamados) => {
-      setChamadosConcluidos(chamados)
-    })
-  }
+      setChamadosConcluidos(chamados);
+    });
+  };
 
   const salvarChamado = async (chamado: Chamado) => {
     setChamado(chamado);
@@ -45,19 +43,19 @@ export default function useChamado() {
     localStorage.setItem("expires", expires.toString());
     setHasChamado(true);
     await repo.save(chamado);
-    getChamadosAbertos()
+    getAll();
 
     // implementar o local storage e dar o get
   };
 
   const chamadoSelecionado = async (chamado: Chamado) => {
     await repo.update(chamado);
-    getChamadosAbertos();
+    // getChamadosAbertos();
     getAll();
   };
   const chamadoExcluido = async (chamado: Chamado) => {
     await repo.delete(chamado);
-    getChamadosAbertos()
+    // getChamadosAbertos();
     getAll();
   };
 
