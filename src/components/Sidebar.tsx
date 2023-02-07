@@ -1,5 +1,5 @@
 import React from 'react'
-import { HomeIcon, ListIcon, LogoutIcon } from '../components/icons/index';
+import { HomeIcon, ListIcon, LogoutIcon } from './Icons/index';
 import SidebarItem from './SidebarItem';
 
 const Sidebar = () => {

@@ -57,12 +57,25 @@ export default class ChamadoCollection implements ChamadoRepo {
 
   
 
-  async update(chamado: Chamado): Promise<Chamado> {
+  async chamadoResolvido(chamado: Chamado): Promise<Chamado> {
     // const novoChamado = new Chamado(chamado.nome, chamado.setor, chamado.descricao, chamado.id, chamado.timestamp, new Date(), true)
     if (chamado?.id) {
       await this.collection()
         .doc(chamado.id)
         .update({ completed_at: new Date(), isFinished: true });
+      // console.log(novoChamado)
+      return chamado;
+    }
+    return chamado;
+  }
+
+
+  async chamadoNaoResolvido(chamado: Chamado): Promise<Chamado> {
+    // const novoChamado = new Chamado(chamado.nome, chamado.setor, chamado.descricao, chamado.id, chamado.timestamp, new Date(), true)
+    if (chamado?.id) {
+      await this.collection()
+        .doc(chamado.id)
+        .update({ completed_at: new Date(), isFinished: false });
       // console.log(novoChamado)
       return chamado;
     }

@@ -17,7 +17,6 @@ const Table = (props: TableProps) => {
             key={chamado.id}
             className={`${i % 2 === 0 ? "bg-red-200" : "bg-red-100"}`}
           >
-            <td className="text-left p-4">{chamado.id}</td>
             <td className="text-left p-4">{chamado.nome}</td>
             <td className="text-left p-4">{chamado.setor}</td>
             <td className="text-left p-4">{chamado.descricao}</td>
@@ -53,7 +52,6 @@ const Table = (props: TableProps) => {
   const renderHead = () => {
     return (
       <tr>
-        <th className="text-left p-4">Código</th>
         <th className="text-left p-4">Nome</th>
         <th className="text-left p-4">Setor</th>
         <th className="text-left p-4">Descrição</th>

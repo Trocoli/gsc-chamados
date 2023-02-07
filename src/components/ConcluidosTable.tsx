@@ -1,5 +1,5 @@
 import Chamado from "@/core/Chamado";
-import { CheckIcon, TrashIcon } from "./Icons";
+import { TrashIcon, Cancelar  } from "./Icons/index";
 
 interface TableProps {
   chamados: Chamado[];
@@ -32,10 +32,12 @@ const ConcluidosTable = (props: TableProps) => {
     return (
       <td className="flex items-center justify-center">
         <button
-          className={`flex justify-center item-center text-green-600 rounded-full hover:bg-red-50 p-2 m-1`}
+          className={`flex justify-center item-center text-red-800 rounded-full hover:bg-red-50 p-2 m-1`}
+          title='Chamado não resolvido ainda'
           onClick={() => props.chamadoSelecionado?.(chamado)}
+
         >
-          {CheckIcon}
+          {Cancelar}
         </button>
         <button
         onClick={() => props.chamadoExcluido?.(chamado)}

@@ -2,12 +2,22 @@ import Form from "@/components/Form";
 import { CheckIcon } from "@/components/Icons";
 import Layout from "@/components/Layout";
 import Chamado from "@/core/Chamado";
+import ChamadoRepo from "@/core/ChamadoRepo";
+import ChamadoCollection from "@/firebase/db/ChamadoCollection";
 import useChamado from "@/hooks/useChamados";
 import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "react-query";
 
 export default function Home() {
-  const { salvarChamado, chamado, chamadoList, hasChamado, setHasChamado, getChamadosAbertos, chamadosAbertos } =
+  const { salvarChamado, chamado, chamadoList, hasChamado, setHasChamado, getChamadosAbertos } =
     useChamado();
+
+    const {mutate} = useMutation(salvarChamado)
+
+    const salvar = (chamado: Chamado) => {
+      if(chamado) 
+      mutate(chamado)
+    }
 
   useEffect(() => {
     const expired = localStorage.getItem("expires");
@@ -54,7 +64,7 @@ export default function Home() {
           </div>
         )}
         {!chamado && !hasChamado && (
-          <Form chamado={chamadoList[0]} onSubmit={salvarChamado} onClickCapture={getChamadosAbertos} />
+          <Form chamado={chamadoList[0]} onSubmit={salvar} />
         )}
         {/* <Table
           chamados={chamados}

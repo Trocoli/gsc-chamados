@@ -2,6 +2,7 @@ import Chamado from "@/core/Chamado";
 import ChamadoRepo from "@/core/ChamadoRepo";
 import ChamadoCollection from "@/firebase/db/ChamadoCollection";
 import { useCallback, useEffect, useState } from "react";
+import { useMutation } from "react-query";
 
 export default function useChamado() {
   const repo: ChamadoRepo = new ChamadoCollection();
@@ -41,20 +42,26 @@ export default function useChamado() {
 
   const salvarChamado = async (chamado: Chamado) => {
     setChamado(chamado);
-    const expires = new Date().getTime() + 10000;
+    const expires = new Date().getTime() + 10000; // change time for longer period maybe 10 min
     localStorage.setItem("expires", expires.toString());
     setHasChamado(true);
     await repo.save(chamado);
     getAll();
-
-    // implementar o local storage e dar o get
+    getChamadosAbertos();
   };
 
-  const chamadoSelecionado = async (chamado: Chamado) => {
-    await repo.update(chamado);
+
+  const chamadoResolvido = async (chamado: Chamado) => {
+    await repo.chamadoResolvido(chamado);
     // getChamadosAbertos();
     getAll();
   };
+
+  const chamadoNaoResolvido = async (chamado: Chamado) => {
+    await repo.chamadoNaoResolvido(chamado);
+    getAll();
+  }
+
   const chamadoExcluido = async (chamado: Chamado) => {
     await repo.delete(chamado);
     // getChamadosAbertos();
@@ -74,6 +81,8 @@ export default function useChamado() {
     salvarChamado,
     getAll,
     chamadoExcluido,
-    chamadoSelecionado,
+    chamadoResolvido,
+    chamadoNaoResolvido
   };
 }
+
