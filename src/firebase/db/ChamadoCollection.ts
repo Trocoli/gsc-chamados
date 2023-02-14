@@ -10,8 +10,8 @@ export default class ChamadoCollection implements ChamadoRepo {
         setor: chamado.setor,
         descricao: chamado.descricao,
         timestamp: chamado.timestamp,
-        completed_at: null,
-        isFinished: false,
+        completed_at: chamado.completed_at,
+        isFinished: chamado.isFinished,
       };
     },
     fromFirestore(
@@ -25,8 +25,8 @@ export default class ChamadoCollection implements ChamadoRepo {
         data.descricao,
         snapshot.id,
         data.timestamp.toDate(),
-        null,
-        false
+        data.completed_at?.toDate(),
+        data.isFinished
       );
     },
   };

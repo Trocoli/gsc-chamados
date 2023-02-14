@@ -1,8 +1,13 @@
+import { useAuth } from '@/hooks/useAuth';
 import React from 'react'
 import { HomeIcon, ListIcon, LogoutIcon } from './Icons/index';
 import SidebarItem from './SidebarItem';
 
+
+
 const Sidebar = () => {
+    
+  const {logout} = useAuth()
   return (
     <aside className='flex flex-col bg-gradient-to-r from from-red-700 to-red-500'>
         <div className='flex-grow'>
@@ -12,7 +17,7 @@ const Sidebar = () => {
             </ul>
         </div>
             <ul className=''>
-                <SidebarItem text='Logout' icon={LogoutIcon} />
+                <SidebarItem text='Logout' icon={LogoutIcon} onClick={logout}/>
             </ul>
     </aside>
     )

@@ -40,7 +40,7 @@ export default function Home() {
 
   // exibir detalhase do chamado e salvar informações no local storage
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-900">
+    <div className="flex items-center justify-center h-screen bg-[#19212c]">
       <Layout title="Chamados GSC">
         {hasChamado && (
           <div>
