@@ -9,6 +9,7 @@ import { useQuery } from "react-query";
 
 const Admin = () => {
   const [errorMessage, setErrorMessage] = useState<any>();
+  
 
   const {
     // chamadosAbertos,
@@ -95,6 +96,7 @@ const Admin = () => {
                 {chamadosConcluidos.length > 0 && (
                   <ConcluidosTable
                     chamados={chamadosConcluidosHoje}
+                    isReport={false}
                     chamadoSelecionado={chamadoNaoResolvido}
                     chamadoExcluido={chamadoExcluido}
                   ></ConcluidosTable>

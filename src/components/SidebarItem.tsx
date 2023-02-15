@@ -12,7 +12,7 @@ const SidebarItem = (props: MenuItemProps) => {
   return (
     <div>
       {props.url && (
-        <li className={` hover:bg-gray-100`}>
+        <li className={` hover:bg-gray-800 text-white flex flex-col items-center justify-center h-20 w-[55px] cursor-pointer ${props.className}`}>
           <Link
             href={props.url!}
             className={`flex flex-col items-center justify-center h-15 w-15 ${props.className}`}

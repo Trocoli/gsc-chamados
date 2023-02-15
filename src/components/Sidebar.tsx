@@ -2,7 +2,7 @@ import { useAuth } from '@/hooks/useAuth';
 import React from 'react'
 import { HomeIcon, ListIcon, LogoutIcon } from './Icons/index';
 import SidebarItem from './SidebarItem';
-
+import Link from 'next/link';
 
 
 const Sidebar = () => {
@@ -12,8 +12,8 @@ const Sidebar = () => {
     <aside className='flex flex-col bg-gradient-to-r from from-red-700 to-red-500'>
         <div className='flex-grow'>
             <ul>
-                <SidebarItem text='Home' icon={HomeIcon}/>
-                <SidebarItem text='Lista' icon={ListIcon}/>
+                <SidebarItem text='Abertos' url='/admin' icon={HomeIcon}/>
+                <SidebarItem text='Todos' url='/todos' icon={ListIcon}/>
             </ul>
         </div>
             <ul className=''>

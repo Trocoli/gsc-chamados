@@ -44,7 +44,7 @@ export default function Home() {
       <Layout title="Chamados GSC">
         {hasChamado && (
           <div>
-            <h1 className="font-bold flex items-center justify-center">e
+            <h1 className="font-bold flex items-center justify-center">
               Chamado realizado com sucesso por favor aguarde.
             </h1>
             {/* <ul className="flex items-center justify-center">

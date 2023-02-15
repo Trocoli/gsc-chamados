@@ -12,6 +12,7 @@ export default function useChamado() {
   const [chamadosAbertos, setChamadosAbertos] = useState<Chamado[]>([]);
   const [chamadosConcluidos, setChamadosConcluidos] = useState<Chamado[]>([]);
   const [hasChamado, setHasChamado] = useState(false);
+  const [anos, setAnos] = useState([])
 
   useEffect(() => {
     getAll();
@@ -39,6 +40,7 @@ export default function useChamado() {
       setChamadosConcluidos(chamados);
     });
   };
+
 
   const salvarChamado = async (chamado: Chamado) => {
     setChamado(chamado);

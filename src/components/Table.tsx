@@ -11,22 +11,21 @@ interface TableProps {
 const Table = (props: TableProps) => {
   const renderData = () => {
     return props.chamados?.map((chamado, i) => {
-      if (!chamado.isFinished) {
         return (
           <tr
             key={chamado.id}
             className={`${i % 2 === 0 ? "bg-red-200" : "bg-red-100"}`}
           >
             <td className="text-left p-4">{chamado.nome}</td>
-            <td className="text-left p-4">{chamado.setor}</td>
+            <td className="text-left p-4 font-bold">{chamado.setor}</td>
             <td className="text-left p-4">{chamado.descricao}</td>
-            <td className="text-left p-4">{`${chamado.timestamp.getHours()}:${
+            <td className="text-left p-4 font-light">{`${chamado.timestamp.getHours()}:${
               +chamado.timestamp.getMinutes() < 10 ? "0" : ""
             }${chamado.timestamp.getMinutes()}`}</td>
             {renderActions(chamado)}
           </tr>
         );
-      }
+
     });
   };
 
