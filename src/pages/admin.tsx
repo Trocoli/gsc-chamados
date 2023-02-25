@@ -6,10 +6,10 @@ import Chamado from "@/core/Chamado";
 import useChamado from "@/hooks/useChamados";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import useChamadoRC from "@/hooks/useChamadosRC";
 
 const Admin = () => {
   const [errorMessage, setErrorMessage] = useState<any>();
-  
 
   const {
     // chamadosAbertos,
@@ -23,17 +23,21 @@ const Admin = () => {
     chamadosAbertos,
   } = useChamado();
 
+  // const { isLoading, data, isError, error }  = useChamadoRC()
+
   const { isLoading, data, isError, error } = useQuery(
     "chamados-tables",
     getChamadosAbertos
     //  {refetchInterval: 2000}
   );
 
+  if (error) {
+    console.log(error);
+  }
+
   const chamadosConcluidosHoje = chamadosConcluidos.filter((chamado) => {
     return chamado.completed_at?.getDate() === new Date().getDate();
   });
-  console.log(chamadosConcluidosHoje)
-
 
   if (isError) {
     setErrorMessage(error);

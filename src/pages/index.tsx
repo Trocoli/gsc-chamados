@@ -9,15 +9,38 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 
 export default function Home() {
-  const { salvarChamado, chamado, chamadoList, hasChamado, setHasChamado, getChamadosAbertos } =
-    useChamado();
+  const [isNameValid, setIsNameValid] = useState(true);
+  const [IsDescValid, setIsDescValid] = useState(true);
 
-    const {mutate} = useMutation(salvarChamado)
+  const {
+    salvarChamado,
+    chamado,
+    chamadoList,
+    hasChamado,
+    setHasChamado,
+    getChamadosAbertos,
+  } = useChamado();
 
-    const salvar = (chamado: Chamado) => {
-      if(chamado) 
-      mutate(chamado)
+  const { mutate } = useMutation(salvarChamado);
+
+  const salvar = (chamado: Chamado) => {
+    if (chamado) {
+      if (chamado.nome.trim() === "") {
+        setIsNameValid(false);
+        return;
+      } else {
+        setIsNameValid(true);
+      }
+      if (chamado.descricao.trim() === "") {
+        setIsDescValid(false);
+        return;
+      } else {
+        setIsDescValid(true);
+      }
+        mutate(chamado);
+
     }
+  };
 
   useEffect(() => {
     const expired = localStorage.getItem("expires");
@@ -37,7 +60,6 @@ export default function Home() {
     location.reload();
   };
 
-
   // exibir detalhase do chamado e salvar informações no local storage
   return (
     <div className="flex items-center justify-center h-screen bg-[#19212c]">
@@ -56,12 +78,22 @@ export default function Home() {
             <div className="flex justify-end">
               <button
                 onClick={resolvido}
-                className="flex items-center p-2 justify-center text-green-700 bg-green-300 rounded-md hover:cursor-pointer font-bold"
+                className="flex items-center p-2 justify-center text-green-700 bg-green-300 rounded-md hover:cursor-pointer font-bold shadow-md"
               >
                 Resolvido{CheckIcon}
               </button>
             </div>
           </div>
+        )}
+        {!isNameValid && (
+          <p className="bg-red-200 text-red-500 px-3 py-2 rounded-lg">
+            Campo nome é obrigatório.
+          </p>
+        )}
+        {!IsDescValid && (
+          <p className="bg-red-200 text-red-500 px-3 py-2 rounded-lg">
+            Campo descrição é obrigatório.
+          </p>
         )}
         {!chamado && !hasChamado && (
           <Form chamado={chamadoList[0]} onSubmit={salvar} />

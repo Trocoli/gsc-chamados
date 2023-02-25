@@ -12,7 +12,6 @@ export default function useChamado() {
   const [chamadosAbertos, setChamadosAbertos] = useState<Chamado[]>([]);
   const [chamadosConcluidos, setChamadosConcluidos] = useState<Chamado[]>([]);
   const [hasChamado, setHasChamado] = useState(false);
-  const [anos, setAnos] = useState([])
 
   useEffect(() => {
     getAll();
@@ -35,6 +34,7 @@ export default function useChamado() {
     });
   };
 
+
   const getChamadosConcluidos = () => {
     repo.getChamadosConcluidos().then((chamados) => {
       setChamadosConcluidos(chamados);
@@ -43,7 +43,6 @@ export default function useChamado() {
 
 
   const salvarChamado = async (chamado: Chamado) => {
-    setChamado(chamado);
     const expires = new Date().getTime() + 10000; // change time for longer period maybe 10 min
     localStorage.setItem("expires", expires.toString());
     setHasChamado(true);

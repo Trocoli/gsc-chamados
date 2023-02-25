@@ -3,11 +3,12 @@ import useChamado from "@/hooks/useChamados";
 import { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
+import SetorInput from "./SetorInput";
 
 interface FormProps {
   chamado: Chamado;
   onSubmit?: (chamado: Chamado) => void;
-  onClickCapture?: () => void
+  onClickCapture?: () => void;
 }
 
 const Form = (props: FormProps) => {
@@ -18,8 +19,8 @@ const Form = (props: FormProps) => {
     Math.floor(Math.random() * 100).toString()
   );
 
-
   const [showForm, setShowForm] = useState(false);
+
 
   const onShowForm = () => {
     setShowForm(true);
@@ -31,7 +32,7 @@ const Form = (props: FormProps) => {
 
   return (
     <div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center ">
         {!showForm && (
           <button
             className="bg-red-600 h-10 w-40 rounded-lg text-white hover:bg-red-500 hover:font-bold hover:scale-110 ease-in-out duration-200"
@@ -44,16 +45,13 @@ const Form = (props: FormProps) => {
       {showForm && (
         <div>
           <div>
+            <SetorInput onChange={setSetor} />
             <Input
               text="Nome"
               placeholder="Insira seu nome"
               onChange={setNome}
             />
-            <Input
-              text="Setor"
-              placeholder="Insira o Setor"
-              onChange={setSetor}
-            />
+
             <Input
               text="Descrição"
               placeholder="Descreva o problema em poucas palavras"
@@ -62,7 +60,7 @@ const Form = (props: FormProps) => {
           </div>
           <div className=" flex justify-center pt-2 m-2 ">
             <Button
-              className={`bg-red-500 mt-5 w-full mr-3  hover:bg-red-400 hover:font-bold  ease-in-out duration-200`}
+              className={`bg-red-500 mt-5 w-full mr-3  hover:bg-red-400 hover:font-bold  ease-in-out duration-200 shadow-md`}
               onClick={() =>
                 props.onSubmit?.(
                   new Chamado(

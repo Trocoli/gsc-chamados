@@ -62,7 +62,7 @@ const Table = (props: TableProps) => {
 
   return (
     <div className="w-full mx-5 max-h-[600px] overflow-y-scroll rounded-xl">
-      <table className="w-full rounded-xl  overflow-scroll">
+      <table className="w-full rounded-xl  overflow-scroll shadow">
         <thead className="text-gray-100 bg-gradient-to-r from from-red-500 to-red-600 ">
           {renderHead()}
         </thead>

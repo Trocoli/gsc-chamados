@@ -1,6 +1,7 @@
 import Chamado from "@/core/Chamado";
 import ChamadoRepo from "@/core/ChamadoRepo";
 import firebase from "@/firebase/config";
+import { orderBy, OrderByDirection } from "firebase/firestore";
 
 export default class ChamadoCollection implements ChamadoRepo {
   #conversor = {
@@ -42,20 +43,26 @@ export default class ChamadoCollection implements ChamadoRepo {
   }
   async getAll(): Promise<Chamado[]> {
     const query = await this.collection().get();
-    return query.docs.map((doc: { data: () => any }) => doc.data()) ?? [];
+    return (
+      query.docs.map(
+        (doc: { data: () => any }) => doc.data(),
+        orderBy("timestmap", "desc")
+      ) ?? []
+    );
   }
 
   async getChamadosAbertos(): Promise<Chamado[]> {
-    const query = await this.collection().where('isFinished', '==' ,false).get()
-    return query.docs.map((doc: { data: () => any }) => doc.data()) ?? [];
-  }
-  
-  async getChamadosConcluidos(): Promise<Chamado[]> {
-    const query = await this.collection().where('isFinished', '==' ,true).get()
+    const query = await this.collection()
+      .orderBy("__name__", 'asc')
+      .where("isFinished", "==", false)
+      .get();
     return query.docs.map((doc: { data: () => any }) => doc.data()) ?? [];
   }
 
-  
+  async getChamadosConcluidos(): Promise<Chamado[]> {
+    const query = await this.collection().where("isFinished", "==", true).get();
+    return query.docs.map((doc: { data: () => any }) => doc.data()) ?? [];
+  }
 
   async chamadoResolvido(chamado: Chamado): Promise<Chamado> {
     // const novoChamado = new Chamado(chamado.nome, chamado.setor, chamado.descricao, chamado.id, chamado.timestamp, new Date(), true)
@@ -68,7 +75,6 @@ export default class ChamadoCollection implements ChamadoRepo {
     }
     return chamado;
   }
-
 
   async chamadoNaoResolvido(chamado: Chamado): Promise<Chamado> {
     // const novoChamado = new Chamado(chamado.nome, chamado.setor, chamado.descricao, chamado.id, chamado.timestamp, new Date(), true)

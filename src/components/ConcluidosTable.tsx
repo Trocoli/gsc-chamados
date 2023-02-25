@@ -45,7 +45,8 @@ const ConcluidosTable = (props: TableProps) => {
             <td className="text-left p-4">{chamado.nome}</td>
             <td className="text-left p-4 font-bold">{chamado.setor}</td>
             <td className="text-left p-4">{chamado.descricao}</td>
-            <td className="text-left p-4 font-light">{`${chamado.completed_at!.getHours()}:${
+            <td className="text-left p-4 font-light">{`
+            ${chamado.completed_at!.getHours()}:${
               +chamado.completed_at!.getMinutes() < 10 ? "0" : ""
             }${chamado.completed_at!.getMinutes()}`}</td>
             {renderActions(chamado)}
