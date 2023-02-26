@@ -16,14 +16,14 @@ export default function useChamado() {
   useEffect(() => {
     getAll();
     getChamadosConcluidos();
-    getChamadosAbertos();
+    // getChamadosAbertos();
   }, []);
 
   const getAll = () => {
     repo.getAll().then((chamados) => {
       setChamadoList(chamados);
     });
-    // getChamadosAbertos()
+    getChamadosAbertos()
   };
 
   // react query bramch
@@ -54,7 +54,7 @@ export default function useChamado() {
 
   const chamadoResolvido = async (chamado: Chamado) => {
     await repo.chamadoResolvido(chamado);
-    // getChamadosAbertos();
+    getChamadosAbertos();
     getAll();
   };
 
@@ -65,7 +65,7 @@ export default function useChamado() {
 
   const chamadoExcluido = async (chamado: Chamado) => {
     await repo.delete(chamado);
-    // getChamadosAbertos();
+    getChamadosAbertos();
     getAll();
   };
 

@@ -15,6 +15,12 @@ const Todos = () => {
         getAll
         //  {refetchInterval: 2000}
       );
+
+
+      const chamadosEncerrados  = chamadoList.filter((chamado) => {
+        return chamado.isFinished
+      })
+
   return (
 <>
 <div className=" flex  h-screen w-screen  bg-[#19212c]">
@@ -24,7 +30,7 @@ const Todos = () => {
             <h1 className={`mb-5 text-4xl font-bold text-white `}>
               Relatório
             </h1>
-            <ConcluidosTable isReport={true} chamados={chamadosConcluidos}/>
+            <ConcluidosTable isReport={true} chamados={chamadosEncerrados}/>
 
           </div>
         </ForceAuth>

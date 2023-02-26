@@ -18,7 +18,7 @@ export default function Home() {
     chamadoList,
     hasChamado,
     setHasChamado,
-    getChamadosAbertos,
+    // getChamadosAbertos,
   } = useChamado();
 
   const { mutate } = useMutation(salvarChamado);

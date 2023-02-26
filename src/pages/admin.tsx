@@ -15,7 +15,8 @@ const Admin = () => {
     // chamadosAbertos,
     chamadosConcluidos,
     getChamadosConcluidos,
-    getChamadosAbertos,
+    // getChamadosAbertos,
+    getAll,
     chamadoResolvido,
     chamadoNaoResolvido,
     chamadoExcluido,
@@ -27,7 +28,7 @@ const Admin = () => {
 
   const { isLoading, data, isError, error } = useQuery(
     "chamados-tables",
-    getChamadosAbertos
+    getAll
     //  {refetchInterval: 2000}
   );
 
@@ -39,6 +40,10 @@ const Admin = () => {
     return chamado.completed_at?.getDate() === new Date().getDate();
   });
 
+  const chamadosEmAberto = chamadoList.filter((chamado) => {
+    return chamado.isFinished === false
+  })
+
   if (isError) {
     setErrorMessage(error);
   }
@@ -47,10 +52,10 @@ const Admin = () => {
     getChamadosConcluidos();
   }, [chamadoList]);
 
-  useEffect(() => {
-    getChamadosAbertos();
-    console.log("lop");
-  }, [chamadoList]);
+  // useEffect(() => {
+  //   // getChamadosAbertos();
+  //   console.log("lop");
+  // }, [chamadoList]);
 
   return (
     <>
@@ -81,7 +86,7 @@ const Admin = () => {
                 )}
                 {chamadosAbertos.length > 0 && (
                   <Table
-                    chamados={chamadosAbertos}
+                    chamados={chamadosEmAberto}
                     chamadoSelecionado={chamadoResolvido}
                     chamadoExcluido={chamadoExcluido}
                   ></Table>
