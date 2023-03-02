@@ -57,9 +57,11 @@ const Admin = () => {
   //   console.log("lop");
   // }, [chamadoList]);
 
+
+   // bg-[#19212c]
   return (
     <>
-      <div className=" flex  h-screen w-screen  bg-[#19212c]">
+      <div className=" flex  h-screen w-screen bg-gray-800">
         <ForceAuth>
           <Sidebar />
           <div className="flex flex-col items-center pt-5 h-screen w-full ">
