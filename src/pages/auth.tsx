@@ -26,7 +26,6 @@ const Auth = () => {
     try {
       if (login) {
         await login(email, password);
-        console.log("suces");
       }
     } catch (err: any) {
       showError('Senha inválida')

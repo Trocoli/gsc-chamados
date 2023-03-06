@@ -7,7 +7,7 @@ interface SetorFilterProps {
     return (
       <div >  
         <select
-          className="bg-gray-300 px-2 text-black text-center rounded-md"
+          className="bg-gray-300 text-black text-center rounded-md"
           name="setor"
           id="setor"
           onChange={e => props.onChange(e.target.value)}
