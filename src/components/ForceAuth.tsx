@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import loading from "../../public/loading.gif";
-import { loadingCube } from "./Icons/loading";
+import { loadingCube } from "../Icons/loading";
 import { useAuth } from "@/hooks/useAuth";
 import router from "next/router";
 

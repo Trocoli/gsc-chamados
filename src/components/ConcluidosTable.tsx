@@ -1,8 +1,8 @@
 import Chamado from "@/core/Chamado";
 import { useEffect, useState } from "react";
 import Filter from "./Filter";
-import { TrashIcon, Cancelar } from "./Icons/index";
 import SetorFilter from "./SetorFilter";
+import { TrashIcon, Cancelar } from "../Icons";
 
 interface TableProps {
   chamados: Chamado[];
