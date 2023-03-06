@@ -2,7 +2,7 @@ import { useAuth } from "@/hooks/useAuth";
 import React from "react";
 import { HomeIcon, ListIcon, LogoutIcon } from "../Icons/index";
 import SidebarItem from "./SidebarItem";
-import Logo from "./Icons/logo.png";
+import Logo from "../Icons/logo.png";
 import Image from "next/image";
 
 const Sidebar = () => {
