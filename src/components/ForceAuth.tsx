@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import loading from "../../public/loading.gif";
+import { loadingCube } from "./Icons/loading";
 import { useAuth } from "@/hooks/useAuth";
 import router from "next/router";
 
@@ -13,8 +14,9 @@ const ForceAuth = (props: any) => {
 
   const renderLoading = () => {
     return (
-      <div className="flex justify-center items-center h-screen ">
-        <Image src={loading} alt={"Loading logo"} />
+      <div className="flex items-center justify-center h-screen ">
+        {/* <Image src={loading} alt={"Loading logo"} /> */}
+        {loadingCube}
       </div>
     );
   };

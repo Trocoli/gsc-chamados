@@ -2,20 +2,16 @@ import ConcluidosTable from "@/components/ConcluidosTable";
 import ForceAuth from "@/components/ForceAuth";
 import Sidebar from "@/components/Sidebar";
 import Table from "@/components/Table";
-import Chamado from "@/core/Chamado";
 import useChamado from "@/hooks/useChamados";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import useChamadoRC from "@/hooks/useChamadosRC";
 
 const Admin = () => {
   const [errorMessage, setErrorMessage] = useState<any>();
 
   const {
-    // chamadosAbertos,
     chamadosConcluidos,
     getChamadosConcluidos,
-    // getChamadosAbertos,
     getAll,
     chamadoResolvido,
     chamadoNaoResolvido,
@@ -41,8 +37,8 @@ const Admin = () => {
   });
 
   const chamadosEmAberto = chamadoList.filter((chamado) => {
-    return chamado.isFinished === false
-  })
+    return chamado.isFinished === false;
+  });
 
   if (isError) {
     setErrorMessage(error);
@@ -52,18 +48,15 @@ const Admin = () => {
     getChamadosConcluidos();
   }, [chamadoList]);
 
-  // useEffect(() => {
-  //   // getChamadosAbertos();
-  //   console.log("lop");
-  // }, [chamadoList]);
 
-
-   // bg-[#19212c]
   return (
     <>
-      <div className=" flex  h-screen w-screen bg-gray-800">
+      <div className=" flex  h-screen w-screen items-center justify-center bg-gray-800">
+  
         <ForceAuth>
-          <Sidebar />
+        <div className="h-screen flex">
+        <Sidebar />
+        </div>
           <div className="flex flex-col items-center pt-5 h-screen w-full ">
             <h1 className={`mb-5 text-4xl font-bold text-white `}>
               Chamados Em Aberto

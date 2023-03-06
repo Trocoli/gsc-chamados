@@ -2,6 +2,7 @@ import Chamado from "@/core/Chamado";
 import { useEffect, useState } from "react";
 import Filter from "./Filter";
 import { TrashIcon, Cancelar } from "./Icons/index";
+import SetorFilter from "./SetorFilter";
 
 interface TableProps {
   chamados: Chamado[];
@@ -13,6 +14,7 @@ interface TableProps {
 
 const ConcluidosTable = (props: TableProps) => {
   const [filteredMonth, setFilteredMonth] = useState(""); // get current month
+  const [filteredSetor, setFilterSetor] = useState<string>();
 
   useEffect(() => {
     const date = new Date();
@@ -21,16 +23,27 @@ const ConcluidosTable = (props: TableProps) => {
   }, []);
 
   const onChangeFilter = (selectedMonth: string) => {
-    console.log(selectedMonth);
     setFilteredMonth(selectedMonth);
   };
 
-  const chamadosFilteredByMonth = props.chamados.filter((chamado) => {
-    return (
-      chamado.completed_at
-        ?.toLocaleString("pt-BR", { month: "long" })
-        .toString() === filteredMonth
-    );
+  const onChangeSetorFilter = (selectedSetor: string) => {
+    setFilterSetor(selectedSetor);
+  };
+
+  const chamadosFiltrados = props.chamados.filter((chamado) => {
+    if (filteredSetor && filteredSetor !== "") {
+      return (
+        chamado.completed_at
+          ?.toLocaleString("pt-BR", { month: "long" })
+          .toString() === filteredMonth && chamado.setor === filteredSetor
+      );
+    } else {
+      return (
+        chamado.completed_at
+          ?.toLocaleString("pt-BR", { month: "long" })
+          .toString() === filteredMonth
+      );
+    }
   });
 
   const renderData = () => {
@@ -54,7 +67,7 @@ const ConcluidosTable = (props: TableProps) => {
         );
       });
     } else {
-      return chamadosFilteredByMonth?.map((chamado, i) => {
+      return chamadosFiltrados?.map((chamado, i) => {
         return (
           <tr
             key={chamado.id}
@@ -66,6 +79,7 @@ const ConcluidosTable = (props: TableProps) => {
             <td className="text-left p-4 font-light">{`${chamado.completed_at!.getDate()} de ${filteredMonth} às ${chamado.completed_at!.getHours()}:${
               +chamado.completed_at!.getMinutes() < 10 ? "0" : ""
             }${chamado.completed_at!.getMinutes()}`}</td>
+            <td></td>
             {renderActions(chamado)}
           </tr>
         );
@@ -77,11 +91,16 @@ const ConcluidosTable = (props: TableProps) => {
     return (
       <tr className="bg-gray-800 text-white">
         <th className="text-left p-4">Nome</th>
-        <th className="text-left p-4">Setor</th>
+        <th className="text-left p-4">
+          <SetorFilter onChange={onChangeSetorFilter} />
+        </th>
         <th className="text-left p-4">Descrição</th>
         <th className="text-left p-4">Resolvido em</th>
         <th className="p-4">
           <Filter selected={filteredMonth} onChangeFilter={onChangeFilter} />
+        </th>
+        <th className="text-light">
+          {chamadosFiltrados.length} chamados
         </th>
       </tr>
     );

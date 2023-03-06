@@ -2,8 +2,6 @@ import Form from "@/components/Form";
 import { CheckIcon } from "@/components/Icons";
 import Layout from "@/components/Layout";
 import Chamado from "@/core/Chamado";
-import ChamadoRepo from "@/core/ChamadoRepo";
-import ChamadoCollection from "@/firebase/db/ChamadoCollection";
 import useChamado from "@/hooks/useChamados";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
@@ -18,7 +16,6 @@ export default function Home() {
     chamadoList,
     hasChamado,
     setHasChamado,
-    // getChamadosAbertos,
   } = useChamado();
 
   const { mutate } = useMutation(salvarChamado);
@@ -69,12 +66,6 @@ export default function Home() {
             <h1 className="font-bold flex items-center justify-center">
               Chamado realizado com sucesso por favor aguarde.
             </h1>
-            {/* <ul className="flex items-center justify-center">
-              <li className="px-5 font-semibold">{chamado.id}</li>
-              <li className="px-5 font-semibold">{chamado.nome}</li>
-              <li className="px-5">{chamado.setor}</li>
-              <li className="px-5">{chamado.descricao}</li>
-            </ul> */}
             <div className="flex justify-end">
               <button
                 onClick={resolvido}
@@ -98,11 +89,6 @@ export default function Home() {
         {!chamado && !hasChamado && (
           <Form chamado={chamadoList[0]} onSubmit={salvar} />
         )}
-        {/* <Table
-          chamados={chamados}
-          chamadoSelecionado={chamadoSelecionado}
-          chamadoExcluido={chamadoExcluido}
-        ></Table> */}
       </Layout>
     </div>
   );
