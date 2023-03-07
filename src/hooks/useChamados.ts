@@ -43,7 +43,7 @@ export default function useChamado() {
 
 
   const salvarChamado = async (chamado: Chamado) => {
-    const expires = new Date().getTime() + 10000; // change time for longer period maybe 10 min
+    const expires = new Date().getTime() + 600000; // change time for longer period maybe 10 min
     localStorage.setItem("expires", expires.toString());
     setHasChamado(true);
     await repo.save(chamado);

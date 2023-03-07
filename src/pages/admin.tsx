@@ -24,8 +24,8 @@ const Admin = () => {
 
   const { isLoading, data, isError, error } = useQuery(
     "chamados-tables",
-    getAll
-    //  {refetchInterval: 2000}
+    getAll,
+    {refetchInterval: 120000}
   );
 
   if (error) {

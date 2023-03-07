@@ -7,7 +7,7 @@ if (!firebase.apps.length) {
 
         apiKey: "AIzaSyCL-VaesZDIyzz_SobHQdT73Zqfi9moKRY",
       
-        authDomain: "gscchamados.vercel.app",
+        authDomain: "gsc-chamados.firebaseapp.com",
       
         databaseURL: "https://gsc-chamados-default-rtdb.firebaseio.com",
       
