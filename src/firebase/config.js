@@ -4,10 +4,22 @@ import 'firebase/compat/firestore';
 
 if (!firebase.apps.length) {
     firebase.initializeApp({
-        apiKey: IzaSyCL-VaesZDIyzz_SobHQdT73Zqfi9moKRY,
-        authDomain: sc-chamados.firebaseapp.com,
-        projectId:gsc-chamados
-    })
+
+        apiKey: "AIzaSyCL-VaesZDIyzz_SobHQdT73Zqfi9moKRY",
+      
+        authDomain: "https://gscchamados.vercel.app/",
+      
+        databaseURL: "https://gsc-chamados-default-rtdb.firebaseio.com",
+      
+        projectId: "gsc-chamados",
+      
+        storageBucket: "gsc-chamados.appspot.com",
+      
+        messagingSenderId: "874491256658",
+      
+        appId: "1:874491256658:web:bddd8c3486156a8089a48b"
+      
+      })
 }
 
 export default firebase 
