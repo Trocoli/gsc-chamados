@@ -19,7 +19,7 @@ if (!firebase.apps.length) {
       
         appId: "1:874491256658:web:bddd8c3486156a8089a48b"
       
-      },)
+      }, )
     }
 
 export default firebase 
