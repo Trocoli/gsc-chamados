@@ -31,6 +31,8 @@ const SetorFilter = (props: SetorFilterProps) => {
         <option value="PAT">PAT</option>
         <option value="PJU">PJU</option>
         <option value="SUP">SUP</option>
+        <option value="SCDO">SCDO</option>
+        <option value="TRAN">TRAN</option>
       </select>
     </div>
   );
