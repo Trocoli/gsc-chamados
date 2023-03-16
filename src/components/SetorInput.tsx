@@ -17,6 +17,7 @@ const SetorInput = (props: SetorInputProps) => {
         <option value="">Selecione o setor</option>
         <option value="ARQ" >ARQ</option>
         <option value="ASP" >ASP</option>
+        <option value="BIM" >BIM</option>
         <option value="CPA">CPA</option>
         <option value="CPL" >CPL</option>
         <option value="CON" >CON</option>
@@ -28,6 +29,7 @@ const SetorInput = (props: SetorInputProps) => {
         <option value="DA" >DA</option>
         <option value="DRA" >DRA</option>
         <option value="DRH" >DRH</option>
+        <option value="GAB" >GAB</option>
         <option value="GSC" >GSC</option>
         <option value="MAT" >MAT</option>
         <option value="PAT" >PAT</option>
