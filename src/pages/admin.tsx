@@ -25,7 +25,7 @@ const Admin = () => {
   const { isLoading, data, isError, error } = useQuery(
     "chamados-tables",
     getAll,
-    {refetchInterval: 120000}
+    {refetchInterval: 360000}
   );
 
   if (error) {
@@ -44,9 +44,9 @@ const Admin = () => {
     setErrorMessage(error);
   }
 
-  useEffect(() => {
-    getChamadosConcluidos();
-  }, [chamadoList]);
+  // useEffect(() => {
+  //   getChamadosConcluidos();
+  // }, [chamadoList]);
 
 
   return (
