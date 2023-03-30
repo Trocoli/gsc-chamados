@@ -35,6 +35,11 @@ const SetorFilter = (props: SetorFilterProps) => {
         <option value="SUP">SUP</option>
         <option value="SCDO">SCDO</option>
         <option value="TRAN">TRAN</option>
+        <option value="GRCG">GRCG</option>
+        <option value="GRPT">GRPT</option>
+        <option value="GRSZ">GRSZ</option>
+        <option value="GRCZ">GRCZ</option>
+        <option value="GRIT">GRIT</option>
       </select>
     </div>
   );
